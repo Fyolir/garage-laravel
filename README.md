@@ -1,5 +1,7 @@
 # Mon concessionnaire avec Laravel
 
+alias sail='bash vendor/bin/sail'
+
 ## Installation du projet
 
 ```bash
@@ -21,10 +23,13 @@ php -r "unlink('composer-setup.php');"
 ```bash
 # Mettre à jour les dépendances
 php composer.phar update
+docker run --rm -it -v $PWD:/app composer update
 # Utiliser La commande artisan
 php artisan
+docker run --rm -it -v $PWD:/app -w /app php:7.4-cli php public/index.php
 # Lancer les tests
 ./vendor/bin/phpunit
+docker run --rm -it -v $PWD:/app -w /app php:7.4-cli vendor/bin/phpunit
 ```
 
 ## Et docker ?
