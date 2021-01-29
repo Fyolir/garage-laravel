@@ -9,8 +9,11 @@ class VehicleService
     /**
      * Enregistre un véhicule en base de donnée
      */
-    public function saveVehicle(): Vehicle
+    public function saveVehicle(array $inputs): void
     {
-        // A vous de jouer !
+        if($imputs['name'] && $imputs['brand_id'] && $imputs['price'] && $imputs['status'] && $imputs['odometer'] && $imputs['type']){
+            $newVehicle= Vehicle::create($inputs);
+            var_dump($inputs);
+        }
     }
 }
