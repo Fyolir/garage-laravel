@@ -29,5 +29,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('create-vehicle', function (User $user) {
             return $user->isAdmin();
         });
+
+        Gate::define('disable-announcements', function (User $user) {
+            return $user->isAdmin();
+        });
     }
 }

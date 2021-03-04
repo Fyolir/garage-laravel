@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
 use \App\Http\Controllers\Admin;
+use App\Http\Controllers\AnnouncementController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +30,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/{id}/reserved', [VehicleController::class, 'reserved'])->name('vehicles.reserved');
         Route::post('/{vehicle}/reserved', [VehicleController::class, 'storeReserved'])->name('vehicules.reserved.store');
     });
+    Route::group(['prefix' => 'announcements'], function () {
+        Route::get('/show', [AnnouncementController::class, 'show'])->name('announcements.show');
+        Route::get('/{id}/details', [AnnouncementController::class, 'details'])->name('announcements.details');
+    });
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => [IsAdmin::class]], function () {
@@ -37,4 +42,8 @@ Route::group(['prefix' => 'admin', 'middleware' => [IsAdmin::class]], function (
     Route::get('/vehicles',[Admin\VehicleController::class, 'index'])->name('admin.vehicle.index');
     Route::get('/vehicles/{id}',[Admin\VehicleController::class, 'show'])->name('admin.vehicle.show');
     Route::put('/vehicles/{id}',[Admin\VehicleController::class, 'update'])->name('admin.vehicle.update');
+    Route::get('/announcements/show', [Admin\AnnouncementController::class, 'show'])->name('admin.announcements.show');
+    Route::get('/announcements/edit/{id}', [Admin\AnnouncementController::class,'edit'])->name('admin.announcements.edit');
+    Route::put('/announcements/{id}',[Admin\AnnouncementController::class, 'update'])->name('admin.announcements.update');
 });
+

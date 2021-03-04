@@ -68,6 +68,14 @@
                                         Mon compte
                                     </a>
 
+                                    <a class="dropdown-item" href="{{ route('announcements.show') }}">
+                                        Annonces
+                                    </a>
+
+                                    @can ('create-vehicle')
+                                        <a class="dropdown-item" href="{{ route('admin.announcements.show') }}">Admin annonces</a>
+                                    @endcan
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
